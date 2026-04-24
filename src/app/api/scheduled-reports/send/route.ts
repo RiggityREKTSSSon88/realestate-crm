@@ -3,8 +3,6 @@ import { Resend } from "resend";
 import { createClient } from "@/lib/supabase/server";
 import type { ScheduledReport } from "@/types/database";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 function computeNextRunAt(frequency: ScheduledReport["frequency"], from: Date): string {
   const next = new Date(from);
   if (frequency === "weekly") {
@@ -27,6 +25,7 @@ function reportTypeLabel(reportType: ScheduledReport["report_type"]): string {
 }
 
 async function sendReport(report: ScheduledReport): Promise<number> {
+  const resend = new Resend(process.env.RESEND_API_KEY ?? "");
   const fromEmail = process.env.RESEND_FROM_EMAIL ?? "noreply@estateiq.com.au";
   const label = reportTypeLabel(report.report_type);
 
