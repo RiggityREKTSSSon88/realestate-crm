@@ -1,4 +1,4 @@
-// TODO: ADD API KEY — set NEXT_PUBLIC_ANTHROPIC_API_KEY in .env.local before launch
+// TODO: ADD API KEY — set ANTHROPIC_API_KEY in .env.local before launch (server-side only, never NEXT_PUBLIC_)
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getAnthropicClient } from "@/lib/anthropic";
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   const anthropic = getAnthropicClient();
   if (!anthropic) {
     return NextResponse.json({
-      suggestion: "AI features not yet configured. Add NEXT_PUBLIC_ANTHROPIC_API_KEY to enable follow-up suggestions.",
+      suggestion: "AI features not yet configured. Add ANTHROPIC_API_KEY to .env.local to enable follow-up suggestions.",
       configured: false,
     });
   }

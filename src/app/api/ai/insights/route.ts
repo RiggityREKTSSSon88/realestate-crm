@@ -1,4 +1,4 @@
-// TODO: ADD API KEY — set NEXT_PUBLIC_ANTHROPIC_API_KEY in .env.local before launch
+// TODO: ADD API KEY — set ANTHROPIC_API_KEY in .env.local before launch (server-side only, never NEXT_PUBLIC_)
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getAnthropicClient } from "@/lib/anthropic";
